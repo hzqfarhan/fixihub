@@ -1,0 +1,80 @@
+[
+  {
+    "slug": "jelik",
+    "title": "JELIK",
+    "author": "Ismi Fa Ismail",
+    "path": "/covers/jelik.jpg",
+    "sourcePage": "https://shop.cziplee.com/products/jelik-by-ismi-fa-ismail",
+    "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1695302156i/199064020.jpg",
+    "sha256": "be82b6bf963443c209ca889b4e1dc6403c98f92e4b4459536ee48c4f574100be",
+    "verifiedAt": "2026-10-04",
+    "provenance": "publisher_cover",
+    "rights": "Third-party copyrighted book artwork; no open licence asserted.",
+    "acquisition": "Existing project asset; original download URL recorded in previous downloader. Visually checked title and author; public retailer metadata cross-checked. Not re-downloaded in this audit."
+  },
+  {
+    "slug": "renjana",
+    "title": "RENJANA",
+    "author": "Qiydenneskala",
+    "path": "/covers/renjana.jpg",
+    "sourcePage": "https://www.gerakbudaya.com/product/renjana",
+    "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1755620206i/240367725.jpg",
+    "sha256": "3101ad0b219b8360d1a19f1c097ab6eff90b971568b8fc3a1ed65c90ba90af6c",
+    "verifiedAt": "2026-10-04",
+    "provenance": "publisher_cover",
+    "rights": "Third-party copyrighted book artwork; no open licence asserted.",
+    "acquisition": "Existing project asset; original download URL recorded in previous downloader. Visually checked title and author; public retailer metadata cross-checked. Not re-downloaded in this audit."
+  },
+  {
+    "slug": "amuk",
+    "title": "AMUK",
+    "author": "Khairi Mohd",
+    "path": "/covers/amuk.jpg",
+    "sourcePage": "https://www.gerakbudaya.com/product/amuk-by-khairi-mohd-buku-fixi-",
+    "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1714092628i/212162270.jpg",
+    "sha256": "c93e5094e7a0afdf1e990ea9468cd15f11b65c011928750d5983027641881690",
+    "verifiedAt": "2026-10-04",
+    "provenance": "publisher_cover",
+    "rights": "Third-party copyrighted book artwork; no open licence asserted.",
+    "acquisition": "Existing project asset; original download URL recorded in previous downloader. Visually checked title and author; public retailer metadata cross-checked. Not re-downloaded in this audit."
+  },
+  {
+    "slug": "jelaga",
+    "title": "JELAGA",
+    "author": "Faizal Sulaiman",
+    "path": "/covers/jelaga.jpg",
+    "sourcePage": "https://www.gerakbudaya.com/product/jelaga",
+    "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1761865194i/243384026.jpg",
+    "sha256": "66063e48e80731edd1acf8192ba6276aa18f24d5ccbac48e6340a2621b0cff2b",
+    "verifiedAt": "2026-10-04",
+    "provenance": "publisher_cover",
+    "rights": "Third-party copyrighted book artwork; no open licence asserted.",
+    "acquisition": "Existing project asset; original download URL recorded in previous downloader. Visually checked title and author; public retailer metadata cross-checked. Not re-downloaded in this audit."
+  },
+  {
+    "slug": "gantung-3",
+    "title": "GANTUNG:3",
+    "author": "Nadia Khan",
+    "path": "/covers/gantung-3.jpg",
+    "sourcePage": "https://www.gerakbudaya.com/product/gantung-3-nadia-khan-fixi",
+    "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1745582828i/231974800.jpg",
+    "sha256": "e6b9427bcc33cb620df95e332da219956eaa324f492321f509639e4f30c27f19",
+    "verifiedAt": "2026-10-04",
+    "provenance": "publisher_cover",
+    "rights": "Third-party copyrighted book artwork; no open licence asserted.",
+    "acquisition": "Existing project asset; original download URL recorded in previous downloader. Visually checked title and author; public retailer metadata cross-checked. Not re-downloaded in this audit."
+  },
+  {
+    "slug": "motel",
+    "title": "MOTEL",
+    "author": "Sahidzan Salleh",
+    "path": "/covers/motel.jpg",
+    "sourcePage": "https://mphonline.com/products/motel",
+    "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1714094067i/212162589.jpg",
+    "sha256": "d1aadbd4a934cf227dceaea806fb2018714e7f197e20616d157ba7c26b69e1b9",
+    "verifiedAt": "2026-10-04",
+    "provenance": "publisher_cover",
+    "rights": "Third-party copyrighted book artwork; no open licence asserted.",
+    "acquisition": "Existing project asset; original download URL recorded in previous downloader. Visually checked title and author; public retailer metadata cross-checked. Not re-downloaded in this audit."
+  }
+]

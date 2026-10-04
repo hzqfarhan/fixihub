@@ -10,6 +10,7 @@ export type Book = {
   description: string;
   format: "physical" | "ebook";
   cover_image?: string | null;
+  back_cover_image?: string | null;
   source_url: string | null;
   provenance: "public_metadata" | "demo";
   active: boolean;

@@ -1,4 +1,5 @@
 "use client";
+import { coverSource } from "@/lib/covers";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
@@ -51,12 +52,12 @@ export function Home() {
       <section className="hero">
         <div className="hero-copy">
           <div className="eyebrow">
-            <span className="mini-line" /> THE INDEPENDENT BOOKSHELF
+            <span className="mini-line" /> BUKU FIXI / FICTION WITHOUT LIMITS
           </div>
           <h1>
-            Out of the ordinary.
+            Cerita tanpa
             <br />
-            <em>Into your hands.</em>
+            <em>sempadan.</em>
           </h1>
           <p>
             Unfamiliar worlds. Unforgettable voices.
@@ -82,7 +83,7 @@ export function Home() {
         </div>
         <div className="hero-art">
           <span className="orbit-text">
-            A NEW PERSPECTIVE ON YOUR NEXT READ
+            MALAYSIAN VOICES. UNEXPECTED WORLDS.
           </span>
           <div className="hero-orbit" />
           <Viewer book={books[0] || h.data.books[0]} hero />
@@ -310,7 +311,13 @@ export function Product({ id }: { id: string }) {
             </div>
             <div>
               <span>Artwork</span>
-              <b>Original placeholder cover</b>
+              <b>
+                {coverSource(b) && b.cover_image === coverSource(b)?.path
+                  ? "Published book cover"
+                  : b.provenance === "demo"
+                    ? "Original demo artwork"
+                    : "Catalog artwork"}
+              </b>
             </div>
           </div>
           <div className="source-box">
@@ -322,8 +329,9 @@ export function Product({ id }: { id: string }) {
                   : "Invented demonstration title"}
               </b>
               <p>
-                Prices, stock, categories and cover designs are demo data. No
-                copyrighted ebook files are included.
+                Prices, stock and categories are demo data. Published covers
+                remain the property of their respective rights holders. No ebook
+                files are included.
               </p>
               {b.source_url && (
                 <a href={b.source_url} target="_blank" rel="noreferrer">
@@ -980,6 +988,21 @@ export function About() {
         FIXIHUB is an independent BIK11003 academic prototype for publisher
         order and preorder management. It is not an official Buku FIXI service.
       </p>
+      <h2>The FIXI identity</h2>
+      <p>
+        The black-and-white FIXI logo is sourced from{" "}
+        <a
+          href="https://www.mabopa.com.my/ahli/buku-fixi/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          MABOPA’s publisher directory
+        </a>{" "}
+        and shown unchanged. FIXI remains the property of its owner; HUB
+        identifies this independent academic project. The monochrome layout and
+        yellow interface accent are this project’s design interpretation, not
+        official brand guidelines.
+      </p>
       <h2>What is public information?</h2>
       <p>
         Buku Fixi’s name, establishment year (2011), and focus on Malay and
@@ -1006,15 +1029,15 @@ export function About() {
       <p>
         All prices, stock, genre assignments, descriptions, customer records,
         shipping rates and campaigns are demonstration data. Kota Selepas Hujan
-        and Catatan Kota are fictional titles. Covers are original geometric
-        placeholders, not FIXI artwork.
+        and Catatan Kota are fictional titles. Fallback covers are original
+        geometric placeholders; publisher cover assets, where present, retain
+        their separate provenance.
       </p>
       <h2>Respecting the source</h2>
       <p>
-        No bulk crawler was run. Robots and terms pages could not be verified,
-        so research was limited to public search-index excerpts and
-        publisher-association information. No access controls were bypassed and
-        no cover images, long synopses or ebook files were copied.
+        No bulk crawler was run. The logo was retrieved in a single request from
+        MABOPA after checking its robots rules. No access controls were
+        bypassed. No long synopses or ebook files are distributed.
       </p>
       <h2>Coursework requirements</h2>
       <p>

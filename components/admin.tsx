@@ -210,7 +210,14 @@ export function Admin() {
       <aside className="admin-sidebar">
         <span className="eyebrow">PUBLISHER WORKSPACE</span>
         <div className="workspace-name">
-          <span className="workspace-icon">F</span>
+          <span className="workspace-icon">
+            <img
+              src="/brand/buku-fixi-logo.jpg"
+              alt="FIXI"
+              width={34}
+              height={34}
+            />
+          </span>
           <div>
             <b>FIXIHUB</b>
             <small>

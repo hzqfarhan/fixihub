@@ -10,6 +10,64 @@ import {
 } from "three";
 import { useMemo, useRef, useEffect, useState } from "react";
 import type { Book } from "@/lib/types";
+// Use the dominant front-cover tone for unscanned backs and spines.
+function frontTone(texture: Texture, fallback: string) {
+  try {
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 32;
+    const ctx = canvas.getContext("2d")!;
+    ctx.drawImage(texture.image, 0, 0, 32, 32);
+    const pixels = ctx.getImageData(0, 0, 32, 32).data;
+    const buckets = new Map<
+      string,
+      { count: number; r: number; g: number; b: number }
+    >();
+    for (let i = 0; i < pixels.length; i += 4) {
+      const [r, g, b] = [pixels[i], pixels[i + 1], pixels[i + 2]];
+      const key = `${r >> 6},${g >> 6},${b >> 6}`;
+      const bucket = buckets.get(key) || { count: 0, r: 0, g: 0, b: 0 };
+      bucket.count++;
+      bucket.r += r;
+      bucket.g += g;
+      bucket.b += b;
+      buckets.set(key, bucket);
+    }
+    const tone = [...buckets.values()].sort((a, b) => b.count - a.count)[0];
+    return `rgb(${Math.round(tone.r / tone.count)}, ${Math.round(tone.g / tone.count)}, ${Math.round(tone.b / tone.count)})`;
+  } catch {
+    return fallback;
+  }
+}
+function useCover(url?: string | null) {
+  const [texture, setTexture] = useState<Texture | null>(null);
+  useEffect(() => {
+    setTexture(null);
+    if (!url) return;
+    let active = true;
+    let loaded: Texture | null = null;
+    new TextureLoader().load(
+      url,
+      (tex) => {
+        if (!active) {
+          tex.dispose();
+          return;
+        }
+        tex.colorSpace = SRGBColorSpace;
+        loaded = tex;
+        setTexture(tex);
+      },
+      undefined,
+      () => {
+        if (active) setTexture(null);
+      },
+    );
+    return () => {
+      active = false;
+      loaded?.dispose();
+    };
+  }, [url]);
+  return texture;
+}
 function Volume({
   book,
   x = 0,
@@ -21,38 +79,12 @@ function Volume({
   angle?: number;
   scale?: number;
 }) {
-  const [coverTexture, setCoverTexture] = useState<Texture | null>(null);
-
-  useEffect(() => {
-    if (!book.cover_image) {
-      setCoverTexture(null);
-      return;
-    }
-    let active = true;
-    let loaded: Texture | null = null;
-    const loader = new TextureLoader();
-    loader.load(
-      book.cover_image,
-      (tex) => {
-        if (!active) {
-          tex.dispose();
-          return;
-        }
-        tex.colorSpace = SRGBColorSpace;
-        tex.needsUpdate = true;
-        loaded = tex;
-        setCoverTexture(tex);
-      },
-      undefined,
-      () => {
-        if (active) setCoverTexture(null);
-      },
-    );
-    return () => {
-      active = false;
-      if (loaded) loaded.dispose();
-    };
-  }, [book.cover_image]);
+  const coverTexture = useCover(book.cover_image);
+  const backTexture = useCover(book.back_cover_image);
+  const bindingColor = useMemo(
+    () => (coverTexture ? frontTone(coverTexture, book.color) : book.color),
+    [coverTexture, book.color],
+  );
 
   const fallbackTexture = useMemo(() => {
     const c = document.createElement("canvas");
@@ -91,26 +123,32 @@ function Volume({
   return (
     <group position={[x, 0, 0]} rotation={[0, angle, -0.09]} scale={scale}>
       <mesh castShadow>
-        <boxGeometry args={[2.3, 3.1, 0.25]} />
+        <boxGeometry args={[2, 3.1, 0.25]} />
         {[0, 1, 2, 3, 4, 5].map((i) => (
           <meshStandardMaterial
             key={i}
             attach={"material-" + i}
             color={
-              i === 4
+              i === 4 || (i === 5 && backTexture)
                 ? "white"
                 : i === 0 || i === 2 || i === 3
                   ? "#eeeade"
-                  : book.color
+                  : bindingColor
             }
-            map={i === 4 ? coverTexture || fallbackTexture : null}
+            map={
+              i === 4
+                ? coverTexture || fallbackTexture
+                : i === 5
+                  ? backTexture
+                  : null
+            }
             roughness={0.7}
           />
         ))}
       </mesh>
-      <mesh position={[-1.16, 0, 0]}>
+      <mesh position={[-1.015, 0, 0]}>
         <boxGeometry args={[0.07, 3.13, 0.28]} />
-        <meshStandardMaterial color={book.color} />
+        <meshStandardMaterial color={bindingColor} roughness={0.7} />
       </mesh>
     </group>
   );
@@ -123,7 +161,12 @@ function Books({ book, hero }: { book: Book; hero: boolean }) {
   });
   return (
     <group ref={ref}>
-      <Volume book={book} angle={-0.28} />
+      <Volume
+        book={book}
+        x={hero ? 1.15 : 0}
+        angle={-0.2}
+        scale={hero ? 0.9 : 1}
+      />
       {hero && (
         <Volume
           book={{
@@ -133,9 +176,10 @@ function Books({ book, hero }: { book: Book; hero: boolean }) {
             author: "Qiydenneskala",
             color: "#db8871",
             cover_image: "/covers/renjana.jpg",
+            back_cover_image: null,
           }}
-          x={-1.5}
-          angle={0.35}
+          x={-1.15}
+          angle={0.2}
           scale={0.8}
         />
       )}
@@ -151,7 +195,7 @@ export default function Scene({
 }) {
   return (
     <Canvas
-      camera={{ position: [0, 0.4, 7.7], fov: 35 }}
+      camera={{ position: [0, 0.4, hero ? 9.2 : 7.7], fov: 35 }}
       dpr={[1, 1.5]}
       shadows
       frameloop={hero ? "always" : "demand"}

@@ -62,8 +62,17 @@ export function Shell({ children }: { children: React.ReactNode }) {
       </div>
       <header className="header">
         <Link className="brand" href="/" aria-label="FIXIHUB home">
-          FIXI<span>HUB</span>
-          <i />
+          <img
+            className="fixi-mark"
+            src="/brand/buku-fixi-logo.jpg"
+            alt="FIXI"
+            width={58}
+            height={58}
+          />
+          <span className="hub-lockup">
+            <span className="hub-word">HUB</span>
+            <span className="hub-caption">THE INDEPENDENT BOOKSHELF</span>
+          </span>
         </Link>
         <nav className={menu ? "nav open" : "nav"} aria-label="Main navigation">
           {[
@@ -132,15 +141,24 @@ export function Shell({ children }: { children: React.ReactNode }) {
       <footer>
         <div>
           <Link className="brand" href="/">
-            FIXI<span>HUB</span>
-            <i />
+            <img
+              className="fixi-mark"
+              src="/brand/buku-fixi-logo.jpg"
+              alt="FIXI"
+              width={58}
+              height={58}
+            />
+            <span className="hub-lockup">
+              <span className="hub-word">HUB</span>
+              <span className="hub-caption">THE INDEPENDENT BOOKSHELF</span>
+            </span>
           </Link>
           <p>Good stories deserve a better home.</p>
           <small>
             Independent student project. Not affiliated with or endorsed by Buku
             FIXI.
             <br />
-            Original placeholder covers. Demo prices, inventory and campaigns.
+            FIXI logo credited to its owner. Independent academic prototype.
           </small>
         </div>
         <div className="footer-links">

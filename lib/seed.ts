@@ -1,3 +1,4 @@
+import { withBookCover } from "./covers";
 import { Book, Data } from "./types";
 export const uid = (n: number) =>
   `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
@@ -9,7 +10,7 @@ export const books: Book[] = [
     "Horror",
     "#b9d559",
     25,
-    "A voice from Malaysia’s contemporary fiction shelf. Public title and author metadata; original placeholder artwork.",
+    "A voice from Malaysia’s contemporary fiction shelf. Public title and author metadata; publisher cover artwork.",
   ],
   [
     "RENJANA",
@@ -33,7 +34,7 @@ export const books: Book[] = [
     "Fiction",
     "#9fadd2",
     25,
-    "A new addition to your reading stack. Public title and author metadata; original placeholder artwork.",
+    "A new addition to your reading stack. Public title and author metadata; publisher cover artwork.",
   ],
   [
     "GANTUNG:3",
@@ -41,7 +42,7 @@ export const books: Book[] = [
     "Thriller",
     "#b797bb",
     27,
-    "The third Gantung title, listed in the official store. Artwork, pricing and stock here are for demonstration.",
+    "The third Gantung title, listed in the official store. Pricing and stock here are for demonstration.",
   ],
   [
     "MOTEL",
@@ -71,7 +72,7 @@ export const books: Book[] = [
   const slug = String(b[0])
     .toLowerCase()
     .replaceAll(/[^a-z0-9]+/g, "-");
-  return {
+  return withBookCover({
     id: uid(i + 1),
     slug,
     title: String(b[0]),
@@ -86,7 +87,7 @@ export const books: Book[] = [
     source_url: i < 6 ? source : null,
     provenance: i < 6 ? "public_metadata" : "demo",
     active: true,
-  };
+  });
 });
 export const demoCustomer = uid(100);
 export const initialData: Data = {

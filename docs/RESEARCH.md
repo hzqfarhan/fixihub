@@ -57,3 +57,11 @@ No commercial affiliation, endorsement, inventory availability, retailer commiss
 - Next.js PWA guide: https://nextjs.org/docs/app/guides/progressive-web-apps
 - Supabase row-level security: https://supabase.com/docs/guides/database/postgres/row-level-security
 - Installed package versions are locked by package-lock.json; Next.js 16.3.8 was confirmed against the package registry during setup.
+
+
+## Subsequent logo refinement
+At the explicit user request, the FIXI logo was retrieved from MABOPA after a successful robots check. See [BRANDING.md](BRANDING.md) for URL, hash, access record, rights status and design decisions. This supersedes the initial no-logo-copying note.
+
+## Book cover audit — 4 October 2026
+
+All six real catalog titles have published front-cover assets already bundled in the project. Their printed title/author matches were visually checked and corroborated against public retailer metadata. See [COVERS.md](COVERS.md) and `lib/cover-sources.json` for exact sources, hashes, and acquisition limits. This supersedes earlier placeholder-only descriptions. The original unrestricted downloader has been retired; no fresh bulk scraping was performed. The two fictional titles retain demo art.

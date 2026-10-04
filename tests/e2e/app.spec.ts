@@ -9,7 +9,7 @@ test("storefront, filtering, theme, responsive layouts and original 3D", async (
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: /Out of the ordinary/ }),
+    page.getByRole("heading", { name: /Cerita tanpa/ }),
   ).toBeVisible();
   await expect(page.locator("canvas")).toBeVisible({ timeout: 20000 });
   await page.screenshot({

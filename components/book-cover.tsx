@@ -9,8 +9,8 @@ export function BookCover({
   book: Book;
   small?: boolean;
 }) {
-  const [imgError, setImgError] = useState(false);
-  const showCover = Boolean(book.cover_image && !imgError);
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const showCover = Boolean(book.cover_image && failedSrc !== book.cover_image);
 
   return (
     <div
@@ -23,11 +23,15 @@ export function BookCover({
           alt={`Kulit buku ${book.title}`}
           className="cover-img"
           loading="lazy"
-          onError={() => setImgError(true)}
+          onError={() => setFailedSrc(book.cover_image || null)}
         />
       ) : (
         <>
-          <span className="cover-edition">FICTION / MALAYSIA</span>
+          <span className="cover-edition">
+            {book.provenance === "demo"
+              ? "DEMO / FICTION"
+              : "COVER UNAVAILABLE"}
+          </span>
           <strong>{book.title}</strong>
           <div className="cover-art">
             <i />
@@ -40,9 +44,9 @@ export function BookCover({
           <span className="cover-mark">
             FH
             <span>
-              BUKU
+              FIXIHUB
               <br />
-              FIXI
+              DEMO
             </span>
           </span>
         </>

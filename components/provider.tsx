@@ -6,6 +6,7 @@ import React, {
   useState,
   useCallback,
 } from "react";
+import { withBookCover } from "@/lib/covers";
 import { supabase } from "@/lib/supabase";
 import { initialData, demoCustomer } from "@/lib/seed";
 import { balance, quote, receiptValid, isOpen } from "@/lib/rules";
@@ -99,7 +100,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
       if (catalog.error) throw catalog.error;
       if (campaigns.error) throw campaigns.error;
       const next: Data = {
-        books: catalog.data as Book[],
+        books: (catalog.data as Book[]).map(withBookCover),
         campaigns: campaigns.data as Campaign[],
         orders: [],
         payments: [],
@@ -162,7 +163,10 @@ export function Provider({ children }: { children: React.ReactNode }) {
     if (demo) {
       try {
         const saved = localStorage.getItem(KEY);
-        if (saved) setData(JSON.parse(saved));
+        if (saved) {
+          const restored = JSON.parse(saved) as Data;
+          setData({ ...restored, books: restored.books.map(withBookCover) });
+        }
         const role = localStorage.getItem("fixihub-demo-role");
         setProfile({
           id: demoCustomer,

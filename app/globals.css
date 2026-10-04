@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
 :root {
   --bg: #f7f7f1;
   --surface: #fff;
@@ -652,7 +652,8 @@ progress::-moz-progress-bar {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: #151515;
   z-index: 1;
   display: block;
   border-radius: inherit;
@@ -2712,5 +2713,606 @@ dialog p {
     scroll-behavior: auto !important;
     animation: none !important;
     transition: none !important;
+  }
+}
+
+/* FIXI editorial refinement: source mark in black/white; yellow is a FIXIHUB UI accent. */
+:root {
+  --bg: #f7f7f5;
+  --surface: #fff;
+  --ink: #111;
+  --muted: #686868;
+  --line: #d9d9d5;
+  --accent: #f2dc32;
+  --soft: #eeeeea;
+  --hero: #121212;
+  --danger: #b04433;
+}
+[data-theme="dark"] {
+  --bg: #151515;
+  --surface: #202020;
+  --ink: #f7f7f3;
+  --muted: #b2b2ac;
+  --line: #383838;
+  --accent: #f2dc32;
+  --soft: #2a2a28;
+  --hero: #090909;
+  --danger: #ffad98;
+}
+h1,
+h2,
+h3 {
+  font-weight: 800;
+  letter-spacing: -0.055em;
+}
+.topline {
+  background: #080808;
+  color: #eee;
+  letter-spacing: 0.16em;
+  height: 30px;
+}
+.header {
+  height: 100px;
+  background: var(--surface);
+  border-bottom: 2px solid var(--ink);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+.brand .fixi-mark {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  background: #000;
+}
+.brand .hub-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+.brand .hub-word {
+  font:
+    800 28px/1 Manrope,
+    Arial,
+    sans-serif;
+  letter-spacing: -1.6px;
+}
+.brand .hub-caption {
+  font:
+    600 7px/1.2 "DM Sans",
+    Arial,
+    sans-serif;
+  letter-spacing: 0.16em;
+  margin-top: 7px;
+}
+.nav a {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.nav a.active:after {
+  bottom: 26px;
+  height: 3px;
+  background: var(--ink);
+}
+.nav-dot,
+.brand i {
+  background: var(--accent);
+}
+.bag span {
+  background: var(--accent);
+  color: #111;
+}
+.button {
+  border-radius: 2px;
+  font-weight: 700;
+}
+.button.primary {
+  background: var(--accent);
+  color: #111;
+}
+.button.primary:hover:not(:disabled) {
+  background: #ffe64b;
+}
+.button.secondary {
+  border-color: var(--ink);
+}
+.hero {
+  margin: 24px 3.5% 0;
+  min-height: 550px;
+  grid-template-columns: 1.05fr 1fr;
+  background: #121212;
+  color: #fff;
+  border-radius: 0;
+  border: 1px solid #333;
+}
+.hero-copy {
+  padding: 50px 0 42px 8%;
+}
+.hero-copy .eyebrow {
+  color: #c9c9c1;
+  font-size: 9px;
+}
+.mini-line {
+  background: var(--accent);
+  height: 3px;
+  width: 29px;
+}
+.hero h1 {
+  font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  font-size: clamp(80px, 8.4vw, 132px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  line-height: 0.9;
+  margin-top: 29px;
+}
+.hero h1 em {
+  color: var(--accent);
+  font-weight: 700;
+}
+.hero-copy p {
+  color: #b6b6b2;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-top: 25px;
+}
+.hero .button.primary {
+  background: var(--accent);
+  color: #111;
+}
+.hero .text-link {
+  color: #fff;
+}
+.hero-buttons {
+  margin-top: 27px;
+}
+.hero-foot {
+  margin-top: 30px;
+  font-size: 8px;
+  color: #bebeb7;
+}
+.hero-foot b {
+  color: #fff;
+}
+.round-star {
+  border: 0;
+  color: var(--accent);
+  font-size: 32px;
+}
+.hero-art {
+  background: radial-gradient(ellipse at 50% 55%, #ffffff14, transparent 70%);
+  border-left: 1px solid #ffffff12;
+}
+.hero-orbit {
+  width: 82%;
+  height: 72%;
+  border: 1px solid #ffffff17;
+  border-radius: 0;
+  transform: translate(-50%, -50%) rotate(-8deg);
+}
+.hero-orbit:after {
+  inset: 26px;
+  border: 1px solid #ffffff12;
+  border-radius: 0;
+}
+.hero-orbit:before {
+  content: "FICTION";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font:
+    700 100px/0.8 "Barlow Condensed",
+    Impact,
+    sans-serif;
+  letter-spacing: 0.01em;
+  color: #ffffff05;
+  text-align: center;
+}
+.orbit-text,
+.edition-pill {
+  color: #aaa;
+}
+.hero .viewer-caption {
+  color: #bdbdb5;
+}
+.hero .viewer-caption button {
+  background: #252525;
+  color: #fff;
+  border-color: #555;
+}
+.value-strip {
+  border-bottom: 2px solid var(--ink);
+  padding: 24px 0;
+  color: var(--ink);
+}
+.value-strip svg {
+  color: var(--ink);
+}
+.section-heading h2 {
+  font-size: 31px;
+  font-weight: 800;
+}
+.section-heading .eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.17em;
+}
+.book-stage,
+.book-card:nth-child(2n) .book-stage,
+.book-card:nth-child(3n) .book-stage,
+.book-card:nth-child(4n) .book-stage {
+  background: #e9e9e5;
+  border-radius: 0;
+  border-bottom: 2px solid var(--ink);
+}
+[data-theme="dark"] .book-stage,
+[data-theme="dark"] .book-card:nth-child(2n) .book-stage,
+[data-theme="dark"] .book-card:nth-child(3n) .book-stage,
+[data-theme="dark"] .book-card:nth-child(4n) .book-stage {
+  background: #292928;
+}
+.book-stage {
+  background-image: linear-gradient(135deg, #fff8, transparent 70%) !important;
+}
+.book-info h3 {
+  font-weight: 800;
+  font-size: 17px;
+}
+.book-info .eyebrow {
+  text-transform: uppercase;
+  font-size: 8px;
+}
+.book-bottom {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.book-bottom strong {
+  font-weight: 700;
+}
+.card-arrow {
+  border-radius: 0;
+  background: var(--accent);
+  color: #111;
+}
+.preorder-banner {
+  background: var(--accent);
+  color: #111;
+  border-radius: 0;
+  border: 1px solid #111;
+  padding: 43px;
+}
+.preorder-banner .eyebrow {
+  color: #35352c;
+}
+.preorder-banner h2 {
+  font-size: 43px;
+  line-height: 1.02;
+}
+.preorder-banner p {
+  color: #454535;
+}
+.preorder-banner .button.primary {
+  background: #111;
+  color: #fff;
+}
+.banner-art > span {
+  color: #111;
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: 120px;
+  letter-spacing: -0.01em;
+}
+.banner-art i {
+  -webkit-text-stroke: 1px #111;
+}
+.banner-circle {
+  background: #111;
+  color: #fff;
+  border: 1px solid #111;
+}
+footer {
+  border-top: 2px solid var(--ink);
+  background: var(--surface);
+}
+footer .brand .fixi-mark {
+  width: 48px;
+  height: 48px;
+}
+.footer-note {
+  font-weight: 700;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.panel,
+.stat-card,
+.campaign-card,
+.review-callout,
+.product-art {
+  border-radius: 2px;
+}
+.product-art {
+  background: var(--soft);
+}
+.product-copy h1 {
+  font-weight: 800;
+}
+.source-box {
+  border-radius: 0;
+  border-left: 3px solid var(--ink);
+}
+.source-box > svg {
+  color: var(--ink);
+}
+.chip {
+  border-radius: 2px;
+}
+.chip.selected {
+  background: var(--ink);
+}
+.empty-symbol {
+  border-radius: 0;
+  color: var(--ink);
+}
+.campaign-art {
+  background: var(--soft);
+}
+progress::-webkit-progress-value {
+  background: #c5ae13;
+}
+progress::-moz-progress-bar {
+  background: #c5ae13;
+}
+.admin-content {
+  background: var(--bg);
+}
+.admin-sidebar {
+  background: var(--surface);
+}
+.admin-sidebar nav button {
+  border-radius: 2px;
+}
+.admin-sidebar nav button.selected {
+  background: var(--ink);
+  color: var(--bg);
+}
+.admin-sidebar nav button.selected svg {
+  color: var(--bg);
+}
+.workspace-icon {
+  background: #000;
+  border-radius: 0;
+  overflow: hidden;
+}
+.workspace-icon img {
+  width: 34px;
+  height: 34px;
+  display: block;
+}
+.stat-card.accent {
+  background: var(--accent);
+  border-color: #d6be1f;
+  color: #111;
+}
+.stat-card.accent > span,
+.stat-card.accent small {
+  color: #504719;
+}
+.review-callout {
+  background: #111;
+  color: #fff;
+  border: 1px solid #333;
+}
+.review-callout > .eyebrow,
+.review-callout p {
+  color: #b9b9b0;
+}
+.review-callout > svg,
+.review-callout .text-link {
+  color: var(--accent);
+}
+.sidebar-bottom .dot {
+  background: #ae9919;
+}
+.account-glyph {
+  color: #d2d2c8;
+}
+.account-glyph > span {
+  color: #99998b;
+}
+.toast {
+  background: #111;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 2px;
+}
+@media (min-width: 1500px) {
+  .hero {
+    min-height: 590px;
+  }
+  .hero-copy {
+    padding-top: 57px;
+  }
+}
+@media (max-width: 1100px) {
+  .brand {
+    gap: 9px;
+  }
+  .brand .fixi-mark {
+    width: 50px;
+    height: 50px;
+  }
+  .brand .hub-word {
+    font-size: 25px;
+  }
+  .brand .hub-caption {
+    font-size: 6px;
+  }
+  .nav {
+    gap: 15px;
+  }
+  .hero h1 {
+    font-size: 92px;
+  }
+  .hero-copy {
+    padding-top: 45px;
+  }
+  .hero {
+    min-height: 540px;
+  }
+  .banner-art > span {
+    font-size: 105px;
+  }
+}
+@media (max-width: 850px) {
+  .header {
+    gap: 15px;
+  }
+  .nav {
+    gap: 12px;
+  }
+  .nav a {
+    font-size: 9px;
+  }
+  .brand .hub-caption {
+    display: none;
+  }
+  .brand .fixi-mark {
+    width: 44px;
+    height: 44px;
+  }
+  .hero h1 {
+    font-size: 78px;
+  }
+  .hero-copy {
+    padding-left: 8%;
+  }
+  .hero-buttons {
+    gap: 15px;
+  }
+  .hero {
+    min-height: 530px;
+  }
+  .hero-orbit:before {
+    font-size: 70px;
+  }
+  .banner-art > span {
+    font-size: 90px;
+  }
+  .preorder-banner h2 {
+    font-size: 35px;
+  }
+}
+@media (max-width: 640px) {
+  .topline {
+    height: 27px;
+    letter-spacing: 0.1em;
+  }
+  .header {
+    height: 79px;
+  }
+  .brand {
+    gap: 9px;
+  }
+  .brand .fixi-mark {
+    width: 44px;
+    height: 44px;
+  }
+  .brand .hub-word {
+    font-size: 25px;
+  }
+  .nav {
+    top: 106px;
+  }
+  .nav a {
+    font-size: 12px;
+  }
+  .hero {
+    margin: 16px 4% 0;
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .hero-copy {
+    padding: 32px 7% 20px;
+  }
+  .hero h1 {
+    font-size: clamp(70px, 21vw, 91px);
+    margin-top: 23px;
+  }
+  .hero-copy .eyebrow {
+    font-size: 7px;
+  }
+  .hero-copy p {
+    font-size: 12px;
+    margin-top: 20px;
+  }
+  .hero-art {
+    height: 330px;
+    border-left: 0;
+    border-top: 1px solid #ffffff15;
+  }
+  .hero .viewer-fallback {
+    min-height: 330px;
+  }
+  .hero-buttons {
+    flex-direction: row;
+    gap: 20px;
+  }
+  .hero-foot {
+    display: none;
+  }
+  .hero-orbit {
+    width: 76%;
+    height: 78%;
+  }
+  .hero-orbit:before {
+    font-size: 75px;
+  }
+  .value-strip {
+    padding: 20px 0;
+  }
+  .section-heading h2 {
+    font-size: 25px;
+  }
+  .section-heading .eyebrow {
+    font-size: 7px;
+  }
+  .book-info h3 {
+    font-size: 14px;
+  }
+  .book-bottom {
+    padding-top: 8px;
+  }
+  .preorder-banner {
+    padding: 28px;
+    gap: 35px;
+  }
+  .preorder-banner h2 {
+    font-size: 36px;
+  }
+  .banner-art > span {
+    font-size: 104px;
+  }
+  .banner-circle {
+    width: 72px;
+    height: 72px;
+  }
+  .preorder-banner p {
+    font-size: 11px;
+  }
+  .banner-art {
+    height: 200px;
+  }
+  footer .brand .fixi-mark {
+    width: 44px;
+    height: 44px;
   }
 }

@@ -108,3 +108,11 @@ The PWA needs HTTPS except on localhost. Browser install is offered when support
 - Demo mode is for one browser and does not provide cross-tab/concurrent transaction guarantees. PostgreSQL functions are the authoritative implementation for multiple users.
 
 Code structure: `components/provider.tsx` exposes the connected/demo data adapter; `lib/rules.ts` provides UI validation; database functions independently enforce all important business rules. SQL is the source of truth for live transactions.
+
+## Refined FIXI identity
+
+The app uses the public FIXI logo with a separate HUB label, monochrome editorial styling and yellow action accents. See [branding provenance](docs/BRANDING.md).
+
+### Published book covers
+
+Six real catalog titles use matching published covers, with source and integrity records in `lib/cover-sources.json`. See [cover provenance and access review](docs/COVERS.md). Run `node scripts/verify-covers.mjs` to verify the bundled files. The two invented titles retain demo artwork.
