@@ -74,19 +74,15 @@ test("checkout, separate receipt review, shipping and ebook access", async ({
   await expect(page.locator(".order-card")).toHaveCount(1);
   const png = readFileSync("public/icons/icon-192.png");
   for (const kind of ["book", "postage"]) {
-    const cell = page
-      .locator(".payment-cell")
-      .filter({
-        hasText: kind === "book" ? "Book payment" : "Postage payment",
-      });
+    const cell = page.locator(".payment-cell").filter({
+      hasText: kind === "book" ? "Book payment" : "Postage payment",
+    });
     await cell.getByRole("button", { name: "Upload receipt" }).click();
-    await page
-      .getByLabel("Receipt file")
-      .setInputFiles({
-        name: "demo-receipt.png",
-        mimeType: "image/png",
-        buffer: png,
-      });
+    await page.getByLabel("Receipt file").setInputFiles({
+      name: "demo-receipt.png",
+      mimeType: "image/png",
+      buffer: png,
+    });
     await page.getByRole("button", { name: "Submit for review" }).click();
     await expect(page.getByRole("dialog")).toHaveCount(0);
   }

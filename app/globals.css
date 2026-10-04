@@ -647,6 +647,16 @@ progress::-moz-progress-bar {
   );
   z-index: 4;
 }
+.cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  display: block;
+  border-radius: inherit;
+}
 .cover-edition {
   position: absolute;
   left: 14px;

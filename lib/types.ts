@@ -9,6 +9,7 @@ export type Book = {
   color: string;
   description: string;
   format: "physical" | "ebook";
+  cover_image?: string | null;
   source_url: string | null;
   provenance: "public_metadata" | "demo";
   active: boolean;

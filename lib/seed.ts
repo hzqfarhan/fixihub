@@ -67,23 +67,27 @@ export const books: Book[] = [
     12,
     "An invented digital title for demonstrating ebook entitlements. No copyrighted ebook is supplied.",
   ],
-].map((b, i) => ({
-  id: uid(i + 1),
-  slug: String(b[0])
+].map((b, i) => {
+  const slug = String(b[0])
     .toLowerCase()
-    .replaceAll(/[^a-z0-9]+/g, "-"),
-  title: String(b[0]),
-  author: String(b[1]),
-  category: String(b[2]),
-  color: String(b[3]),
-  price: Number(b[4]),
-  description: String(b[5]),
-  stock: i === 6 ? 0 : 80 - i * 7,
-  format: i === 7 ? "ebook" : "physical",
-  source_url: i < 6 ? source : null,
-  provenance: i < 6 ? "public_metadata" : "demo",
-  active: true,
-}));
+    .replaceAll(/[^a-z0-9]+/g, "-");
+  return {
+    id: uid(i + 1),
+    slug,
+    title: String(b[0]),
+    author: String(b[1]),
+    category: String(b[2]),
+    color: String(b[3]),
+    price: Number(b[4]),
+    description: String(b[5]),
+    stock: i === 6 ? 0 : 80 - i * 7,
+    format: i === 7 ? "ebook" : "physical",
+    cover_image: `/covers/${slug}.jpg`,
+    source_url: i < 6 ? source : null,
+    provenance: i < 6 ? "public_metadata" : "demo",
+    active: true,
+  };
+});
 export const demoCustomer = uid(100);
 export const initialData: Data = {
   books,

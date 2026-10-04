@@ -14,7 +14,7 @@ This is the **proposed workflow**, not a verified description of FIXI’s intern
 | BR02 | Signup always produces a customer; only database owner appoints admins                                              | Auth trigger; no role write grants          |
 | BR03 | A book belongs to one publisher; authors and categories are many-to-many                                            | FKs and composite join PKs                  |
 | BR04 | Books have positive MYR price, nonnegative stock, allowed format                                                    | SQL CHECK constraints                       |
-| BR05 | An order has 1–30 distinct book lines; quantity is integer 1–10 per physical line and exactly 1 per digital line                                            | checkout validation + item constraints      |
+| BR05 | An order has 1–30 distinct book lines; quantity is integer 1–10 per physical line and exactly 1 per digital line    | checkout validation + item constraints      |
 | BR06 | Authoritative price comes from the database, not the client                                                         | checkout selects locked book row            |
 | BR07 | Physical stock cannot go negative; ebook stock is not decremented                                                   | Row locking + stock CHECK                   |
 | BR08 | Preorders require active campaign, matching book, open window and available capacity                                | Locked campaign lookup                      |

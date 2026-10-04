@@ -57,14 +57,14 @@ export function Viewer({ book, hero = false }: { book: Book; hero?: boolean }) {
       <div className="viewer-caption">
         {enabled ? (
           <>
-            <Rotate3D size={15} /> Drag to explore · original demo artwork
+            <Rotate3D size={15} /> Drag to explore · 3D book model
           </>
         ) : supported ? (
           <button onClick={() => setEnabled(true)}>
             <Rotate3D size={15} /> Enable interactive 3D
           </button>
         ) : (
-          <span>Original demo cover</span>
+          <span>Book cover</span>
         )}
       </div>
     </div>

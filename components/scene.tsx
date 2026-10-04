@@ -1,8 +1,14 @@
 "use client";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, ContactShadows } from "@react-three/drei";
-import { CanvasTexture, Group, SRGBColorSpace } from "three";
-import { useMemo, useRef, useEffect } from "react";
+import {
+  CanvasTexture,
+  Group,
+  SRGBColorSpace,
+  Texture,
+  TextureLoader,
+} from "three";
+import { useMemo, useRef, useEffect, useState } from "react";
 import type { Book } from "@/lib/types";
 function Volume({
   book,
@@ -15,7 +21,40 @@ function Volume({
   angle?: number;
   scale?: number;
 }) {
-  const texture = useMemo(() => {
+  const [coverTexture, setCoverTexture] = useState<Texture | null>(null);
+
+  useEffect(() => {
+    if (!book.cover_image) {
+      setCoverTexture(null);
+      return;
+    }
+    let active = true;
+    let loaded: Texture | null = null;
+    const loader = new TextureLoader();
+    loader.load(
+      book.cover_image,
+      (tex) => {
+        if (!active) {
+          tex.dispose();
+          return;
+        }
+        tex.colorSpace = SRGBColorSpace;
+        tex.needsUpdate = true;
+        loaded = tex;
+        setCoverTexture(tex);
+      },
+      undefined,
+      () => {
+        if (active) setCoverTexture(null);
+      },
+    );
+    return () => {
+      active = false;
+      if (loaded) loaded.dispose();
+    };
+  }, [book.cover_image]);
+
+  const fallbackTexture = useMemo(() => {
     const c = document.createElement("canvas");
     c.width = 768;
     c.height = 1024;
@@ -48,7 +87,7 @@ function Volume({
     t.colorSpace = SRGBColorSpace;
     return t;
   }, [book.title, book.author, book.color]);
-  useEffect(() => () => texture.dispose(), [texture]);
+  useEffect(() => () => fallbackTexture.dispose(), [fallbackTexture]);
   return (
     <group position={[x, 0, 0]} rotation={[0, angle, -0.09]} scale={scale}>
       <mesh castShadow>
@@ -64,7 +103,7 @@ function Volume({
                   ? "#eeeade"
                   : book.color
             }
-            map={i === 4 ? texture : null}
+            map={i === 4 ? coverTexture || fallbackTexture : null}
             roughness={0.7}
           />
         ))}
@@ -90,8 +129,10 @@ function Books({ book, hero }: { book: Book; hero: boolean }) {
           book={{
             ...book,
             title: "RENJANA",
+            slug: "renjana",
             author: "Qiydenneskala",
             color: "#db8871",
+            cover_image: "/covers/renjana.jpg",
           }}
           x={-1.5}
           angle={0.35}
